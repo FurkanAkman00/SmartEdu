@@ -1,0 +1,64 @@
+<%- include('partials/_header') %>
+	
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Courses<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+		</div>
+	</div>
+	
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <div class="row"> 
+                <div class="col-lg-9 blog-post-single">
+				            <div class="row"> 
+				<% for (let i = 0; i<courses.length; i++) { %>
+				  <div class="col-lg-6 col-md-6 col-12">
+                    <div class="course-item mb-5">
+						<div class="image-blog">
+							<img src="/images/blog_2.jpg" alt="" class="img-fluid">
+						</div>
+						<div class="course-br">
+							<div class="course-title">
+								<h2><a href="courses/<%= courses[i].slug %>" title=""><%= courses[i].name %></a></h2>
+							</div>
+							<div class="blog-desc">
+								<p><%= courses[i].description %></p>
+							</div>
+						</div>
+						<div class="course-meta-bot">
+							<ul>
+								<li><i class="fa fa-user" aria-hidden="true"></i><%= courses[i].user.name %></li>
+							</ul>
+						</div>
+					</div>
+                </div><!-- end col -->	
+				<% } %>
+            </div><!-- end row -->
+					
+                </div><!-- end col -->
+				<div class="col-lg-3 col-12 right-single">
+					<div class="widget-search">
+						<div class="site-search-area">
+							<form method="GET" id="site-searchform" action="/courses">
+								<div>
+									<input class="input-text form-control" name="search" id="search-k" placeholder="Search..." type="text">
+									<button id="searchsubmit" value="Search" type="submit"></button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="widget-categories">
+						<h3 class="widget-title">Categories</h3>
+						<ul>
+							<% for (let i = 0; i<categories.length; i++) { %>
+							<li><a href="/courses?categories=<%= categories[i].slug %>"</a><%= categories[i].name %></li> <%# How to make query %>
+							<% } %>
+						</ul>
+					</div>
+				</div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+ <%- include('partials/_footer') %>
