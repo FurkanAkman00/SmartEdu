@@ -67,6 +67,38 @@ router.get('/', async (req,res) => {
     }
 })
 
+router.put('/:slug',async (req,res)=>{
+    try{
+
+        const newCourse = await Course.findOne({slug:req.params.slug})
+        newCourse.name = req.body.name
+        newCourse.description = req.body.description
+        newCourse.category = req.body.category
+        newCourse.save()
+
+        res.status(200).redirect('/users/dashboard')
+
+    }catch(err){
+        res.status(400).json({
+            status:'fail',
+            error,
+        })
+    }
+})
+
+router.delete('/:slug',async(req,res)=>{
+    try{
+        const deleteData = await Course.findOneAndDelete({slug:req.params.slug})
+        req.flash('error','Course removed successfully')
+        res.status(200).redirect('/users/dashboard')
+    } catch(err){
+        res.status(400).json({
+            status:'fail',
+            error
+        })
+    }
+})
+
 router.post('/',roleMiddleware(["teacher", "admin"]),async (req,res) => { // We gave roles as parameters
     try{
         const course = await Course.create({
@@ -75,14 +107,12 @@ router.post('/',roleMiddleware(["teacher", "admin"]),async (req,res) => { // We 
             category: req.body.category,
             user: req.session.userID
         })
-
+            req.flash("success", "Course Created Successfully");
             res.status(201).redirect('/courses')
     }
     catch (error){
-        res.status(400).json({
-            status:'fail',
-            error
-        })
+        req.flash("error", "Something Went Wrong");
+        res.status(400).redirect('/courses')
     }
 })
 

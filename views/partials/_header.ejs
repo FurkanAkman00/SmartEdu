@@ -50,11 +50,11 @@
 	</div>
 	<!-- END LOADER -->	
 
-    <!-- Start header -->
+  	<!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.html">
+				<a class="navbar-brand" href="/">
 					<img src="/images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,26 +64,28 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-host">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item <%= name === 'index' && 'active' %>"><a class="nav-link" href="/">Home</a></li>
-						<li class="nav-item <%= name === 'about' && 'active' %>"><a class="nav-link" href="/about">About Us</a></li>
-						<li class="nav-item <%= name === 'courses' && 'active' %>"><a class="nav-link" href="/courses">Courses</a></li>
-                        <% if(userIN) { %>
-						<li class="nav-item <%= name === 'dashboard' && 'active' %>"><a class="nav-link" href="/users/dashboard">Dashboard</a></li> <%# eğer usersin başına / koymazsan hangi adresteyse onun önüne /users/dashboard koyup devam eder %>
-                        <% } %>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						<li class="nav-item <%= name ==='index' && 'active' %>"><a class="nav-link" href="/">Home</a></li>
+						<li class="nav-item <%= name ==='about' && 'active' %>"><a class="nav-link" href="/about">About Us</a></li>
+						<li class="nav-item <%= name ==='courses' && 'active' %>"><a class="nav-link" href="/courses">Courses</a></li>
+						<% if(userIN) { %>
+						<li class="nav-item <%= name ==='dashboard' && 'active' %>" ><a class="nav-link" href="/users/dashboard">Dashboard</a></li>
+						<% } %>
+						<li class="nav-item <%= name ==='contact' && 'active' %>"><a class="nav-link" href="/contact">Contact</a></li>
 					</ul>
-                    <% if(!userIN){%>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a class="hover-btn-new log <%= name === 'login' && 'orange' %> mr-2" href="/login" data-toggle="modal" data-target="#login"><span><i class="fa fa-sign-in" aria-hidden="true"></i></span></a></li>
-                            <li><a class="hover-btn-new log  <%= name === 'register' && 'orange' %>" href="/register" data-toggle="modal" data-target="#signup"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span></a></li>
-                        </ul>
-                        <% } %>
 
-                    <%if(userIN){%>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a class="hover-btn-new log <%= name === 'login' && 'orange' %> mr-2" href="/users/signout" data-toggle="modal" data-target="#login"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
-                        </ul>
-                    <%}%>
+					<% if(!userIN) { %> 
+					<ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log <%= name ==='login' && 'orange' %> mr-2" href="/login"><span><i class="fa fa-sign-in" aria-hidden="true"></i></span></a></li>
+						<li><a class="hover-btn-new log <%= name ==='register' && 'orange' %>" href="/register"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span></a></li>
+                    </ul>
+					<% } %>
+
+					<% if(userIN) { %> 
+						<ul class="nav navbar-nav navbar-right">
+							<li><a class="hover-btn-new log mr-2" href="/users/logout"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
+						</ul>
+	
+					<% } %>
 				</div>
 			</div>
 		</nav>

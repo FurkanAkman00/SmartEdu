@@ -1,5 +1,3 @@
-const req = require('express/lib/request')
-const res = require('express/lib/response')
 const User = require('../models/User')
 
 module.exports = (req, res, next) => {

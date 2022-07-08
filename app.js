@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 var session = require('express-session')
+const flash = require('connect-flash');
+var methodOverride = require('method-override')
 const MongoStore = require('connect-mongo');
 
 
@@ -24,6 +26,15 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
   }))
+app.use(flash());
+app.use((req, res, next)=> {
+res.locals.flashMessages = req.flash();
+next();
+})
+app.use(methodOverride('_method',{
+    methods: ['POST','GET'],
+  })
+)
 
 // Routes
 app.use('*',(req,res,next) =>{

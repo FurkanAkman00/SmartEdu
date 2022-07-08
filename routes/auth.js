@@ -96,7 +96,7 @@ router.post('/login',async (req,res) => {
     }
 })
 
-router.get('/signout',async (req,res) => {
+router.get('/logout',async (req,res) => {
     try{
        
         req.session.destroy(() =>{
